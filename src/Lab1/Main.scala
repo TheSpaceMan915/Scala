@@ -55,7 +55,8 @@ object Main {
       TheCounter(obj.tail,number + 1)
     }
 
-  def CheckifPalindrome(obj: List[Int]): Boolean =     //the third using a loop
+  /*
+  def CheckifPalindrome(obj: List[Int]): Boolean =
     {
       var result: Boolean = true
       for (i <- 0 until  obj.length )
@@ -69,7 +70,25 @@ object Main {
           }
         }
         return result
+    }*/
+
+  def CheckifPalindrome2(obj: List[Int]): Boolean = {           //the third using a loop
+    var rev_list: List[Int] = obj.reverse
+    var temp_list: List[Int] = obj
+    var result = true
+
+    while (!temp_list.isEmpty)
+    {
+      result = temp_list.head == rev_list.head
+      if (result == false)
+        {
+          return result
+        }
+      temp_list = temp_list.tail
+      rev_list = rev_list.tail
     }
+    result
+  }
 
   def CheckifPalindromeR(obj: List[Int]): Boolean =     //the third using recursion
   {
@@ -259,8 +278,8 @@ object Main {
     println("Counted " + CountElements(list1) + " elements in " + list1 + " using a loop")
     println("Counted " + TheCounter(list1) + " elements in " + list1 + " using recursion")
 
-    println(list1 + " is a palindrome using a loop: " +CheckifPalindrome(list1))
-    println(listP + " is a palindrome using a loop: " +CheckifPalindrome(listP))
+    println(list1 + " is a palindrome using a loop: " +CheckifPalindrome2(list1))
+    println(listP + " is a palindrome using a loop: " +CheckifPalindrome2(listP))
 
     println(list1 + " is a palindrome using recursion: " + CheckifPalindromeR(list1))
     println(listP + " is a palindrome using recursion: " + CheckifPalindromeR(listP))
@@ -287,5 +306,6 @@ object Main {
 
     println("Using a loop x = "+ TheMethod(2.0))
     println("Using recursion x = "+ TheMethodR(2.0))
+
   }
 }
